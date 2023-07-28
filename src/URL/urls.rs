@@ -7,7 +7,7 @@ pub trait URLFromString <T>{
 }
 
 
-pub enum HTTP_protocol{
+pub enum HttpProtocol{
   HTTP(String),
   HTTPS(String)
 }
@@ -24,21 +24,20 @@ impl std::fmt::Display for ProtocolParserError {
 
 impl std::error::Error for ProtocolParserError {}
 
-impl URLFromString<HTTP_protocol> for HTTP_protocol{
-
+impl URLFromString<HttpProtocol> for HttpProtocol{
 
   fn from_string(s: &str) -> Result<Self, Box<dyn std::error::Error>> {
       let parts: Vec<_> = s.split("://").collect();
       match parts.get(0){
-        Some(&"http") => Ok(HTTP_protocol::HTTP("http://".to_string())),
-        Some(&"https") => Ok(HTTP_protocol::HTTPS("https://".to_string())),
+        Some(&"http") => Ok(HttpProtocol::HTTP("http://".to_string())),
+        Some(&"https") => Ok(HttpProtocol::HTTPS("https://".to_string())),
         _ => Err(Box::new(ProtocolParserError))
       }
 
   }
 }
 
-impl HTTP_protocol{
+impl HttpProtocol{
 
 }
 
@@ -47,7 +46,7 @@ impl HTTP_protocol{
 
 pub struct URL {
     pub url: String,
-    pub protocol: Option<HTTP_protocol>,
+    pub protocol: Option<HttpProtocol>,
     pub host: Option<IpAddr>,
     pub port: String,
     pub domain: String,
@@ -66,7 +65,7 @@ impl URL{
   pub fn from_string(s: &str) -> Self{
     URL{
       url: String::new(),
-      protocol: Some(HTTP_protocol::HTTP("http://".to_string())),
+      protocol: Some(HttpProtocol::HTTP("http://".to_string())),
       host:Some(IpAddr::V4(Ipv4Addr::new(0,0,0,0))),
       port:String::new(),
       domain:String::new()
