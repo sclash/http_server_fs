@@ -6,7 +6,7 @@ pub trait URLFromString <T>{
   fn from_string(s: &str) -> Result<T, Box<dyn std::error::Error>>;
 }
 
-
+#[derive(Debug, PartialEq)]
 pub enum HttpProtocol{
   HTTP(String),
   HTTPS(String)

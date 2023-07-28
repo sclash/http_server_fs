@@ -6,6 +6,7 @@
 
 
 use crate::URL::HttpProtocol;
+use crate::URL::urls::URLFromString;
 
 #[cfg(test)]
 mod tests {

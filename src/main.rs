@@ -1,14 +1,21 @@
 
+
+
 mod URL;
-// mod test;
-
-
 
 use URL::HttpProtocol;
+
+use URL::urls::URLFromString;
 
 
 fn main() {
     println!("Hello, world!");
+    let c = HttpProtocol::from_string("https://cazzzo");
+
+    println!("{:?}",c);
+
+    let res = c.unwrap();
+    println!("{:?}", res);
 }
 
 
@@ -20,20 +27,3 @@ mod tests {
     #[path = "URL_test/PROTOCOL_test.rs"]
     mod PROTOCOL_test;
 }
-
-// Expose the test module in the public API
-// #[cfg(test)]
-// pub use tests::test;
-
-// #[cfg(test)]
-// mod tests {
-
-
-//     #[test]
-//     fn it_works(){
-//         // HttpProtocol
-//     }
-// }
-
-// #[cfg(test)]
-// mod test;
