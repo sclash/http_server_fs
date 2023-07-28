@@ -22,8 +22,6 @@ mod tests {
 
         let c = HttpProtocol::from_string("http://example.com");
         println!("{:?}", c.as_ref().unwrap());
-        assert_eq!(c.unwrap(), HttpProtocol::HTTP("http://".to_string()));
+        assert_eq!(c.unwrap(), HttpProtocol::HTTP("http://example.com".to_string()));
     }
 }
-
-
